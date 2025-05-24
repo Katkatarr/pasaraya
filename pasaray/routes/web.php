@@ -2,6 +2,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController; // Admin ProductController
 
 Route::get('/', [ProductController::class, 'index']); // Home Page
 Route::get('/search', [ProductController::class, 'search']); // Search Page
@@ -16,5 +17,8 @@ Route::post('/checkout', [CheckoutController::class, 'process']); // Process Che
 // Admin Routes
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index']); // Admin Dashboard
-    Route::resource('/products', AdminController::class); // Admin Product Management
+    
+    // Admin Routes for Product Management
+    Route::resource('/products', AdminProductController::class); // Admin Product Management
 });
+
